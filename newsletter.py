@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 from email import EmailMessage
 import os
 
-#Load secrets from .env
+# Load secrets from .env
 load_dotenv()
 gmail_address = os.getenv("GMAIL_ADDRESS")
 gmail_password = os.getenv("GMAIL_PASSWORD")
@@ -24,7 +24,19 @@ email.add_alternative(f"""\
 </body>
 </html>
 """, subtype="html")
-#TODO Add file passthrough
+#TODO Add HTML file passthrough
 
 # Add plaintext alternative as fallback option
 email.set_content("Brought to you by Sleep1ng-Giant")
+
+# Send the email to the newsletter subscribers
+subscriber_email_addresses = []
+#TODO add email addr file passthrough
+with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ssl.create_default_context()) as smtp_server:
+    smtp_server.login(gmail_address, gmail_password)
+    
+    for subsciber_email_address in subscriber_email_addresses:
+        # Set the recipient for the email
+        email["To"] = subsciber_email_address
+
+        smtp_server.send_message(email)
