@@ -1,8 +1,13 @@
-from dotenv import load_dotenv
-from email.message import EmailMessage
-import smtplib
-import ssl
 import os
+import base64
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from dotenv import load_dotenv
+import google.auth.transport.requests
+import google.oauth2.credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 
 # Load secrets from .env
 load_dotenv()
@@ -11,7 +16,7 @@ gmail_password = os.getenv("GMAIL_PASSWORD")
 
 # Define the required scopes and file paths
 SCOPES = ['https://www.googleapis.com/auth/gmail.send']
-CREDENTIALS_FILE = 'path/to/credentials.json'  # Path to your OAuth 2.0 credentials
+CREDENTIALS_FILE = '/home/kalin/Documents/GMAIL-API-TOKEN.json'  # Path to your OAuth 2.0 credentials
 TOKEN_FILE = 'token.json'  # File to store the OAuth 2.0 token
 
 #Create the email
