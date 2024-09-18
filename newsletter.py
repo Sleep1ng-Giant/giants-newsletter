@@ -9,6 +9,11 @@ load_dotenv()
 gmail_address = os.getenv("GMAIL_ADDRESS")
 gmail_password = os.getenv("GMAIL_PASSWORD")
 
+# Define the required scopes and file paths
+SCOPES = ['https://www.googleapis.com/auth/gmail.send']
+CREDENTIALS_FILE = 'path/to/credentials.json'  # Path to your OAuth 2.0 credentials
+TOKEN_FILE = 'token.json'  # File to store the OAuth 2.0 token
+
 #Create the email
 email = EmailMessage()
 
