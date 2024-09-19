@@ -1,5 +1,6 @@
 import os
 import base64
+import csv
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from dotenv import load_dotenv
@@ -60,7 +61,13 @@ def send_message(service, sender, to, subject, html_body):
         print(f'An error occurred: {error}')
         return None
     
-
+def read_recipients_from_csv(file_path):
+    recipients = []
+    with open(file_path, mode='r', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            recipients.append((row['name'], row['email']))
+    return recipients
 
 def main():
     # Load environment variables
@@ -72,14 +79,18 @@ def main():
     service = build('gmail', 'v1', credentials=creds)
 
     # Read HTML content from file
-    with open('path/to/newsletter.html', 'r') as file:
+    with open('test.html', 'r') as file:
         html_content = file.read()
 
     # Define email content
     subject = 'Your Newsletter Subject'
 
-    # Send the email
-    send_message(service, gmail_address, recipient_email, subject, html_content)
+    # Read recipients from CSV
+    recipients = read_recipients_from_csv('subscribers.csv')
+    
+    for name, email in recipients:
+        print(f'Sending email to {name} <{email}>...')
+        send_message(service, gmail_address, email, subject, html_content)
 
 if __name__ == '__main__':
     main()
