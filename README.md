@@ -101,11 +101,11 @@ This will:
 
 ```
 ├── .env                     # Environment variables (Gmail address)
-├── credentials.json          # Google API OAuth 2.0 credentials
-├── list-of-your-subscribers.csv # List of recipients
-├── your-file-here.html       # HTML content for the newsletter
-├── newsletter.py                   # Main script to send the newsletter
-├── README.md                 # Project documentation
+├── credentials.json         # Google API OAuth 2.0 credentials
+├── subscribers.csv          # List of recipients
+├── test.html                # Replace this with your HTML content for the newsletter
+├── newsletter.py            # Main script to send the newsletter
+├── README.md                # Project documentation
 ```
 
 ---
