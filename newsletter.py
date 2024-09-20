@@ -13,12 +13,6 @@ from googleapiclient.errors import HttpError
 
 # Define the required scopes and file paths
 SCOPES = ['https://www.googleapis.com/auth/gmail.send']
-<<<<<<< HEAD
-CREDENTIALS_FILE = '/home/kalin/Documents/GMAIL-API-TOKEN.json'  # Path to your OAuth 2.0 credentials
-TOKEN_FILE = 'token.json'  # File to store the OAuth 2.0 token
-
-def get_credentials():
-=======
 CREDENTIALS_FILE = '/home/your/gmail/API/token.json'  # Path to your OAuth 2.0 credentials
 TOKEN_FILE = 'token.json'  # File to store the OAuth 2.0 token
 
@@ -33,7 +27,6 @@ def get_credentials():
     Returns:
         google.oauth2.credentials.Credentials: The credentials object used for authenticating API requests.
     """
->>>>>>> 2128406 (Added docstrings)
     
     creds = None
     #load credentials from path if it exists
@@ -53,8 +46,6 @@ def get_credentials():
 
 
 def create_message(sender, to, subject, html_body):
-<<<<<<< HEAD
-=======
     """
     Create an email message in MIME format, encoding the content in base64.
 
@@ -70,7 +61,6 @@ def create_message(sender, to, subject, html_body):
     Returns:
         dict: A dictionary containing the base64-encoded raw message, ready to be sent via the Gmail API.
     """
->>>>>>> 2128406 (Added docstrings)
     
     # Create a multipart email message
     message = MIMEMultipart()
@@ -86,8 +76,6 @@ def create_message(sender, to, subject, html_body):
     return {'raw': raw_message}
 
 def send_message(service, sender, to, subject, html_body):
-<<<<<<< HEAD
-=======
     """
     Send an email message using the Gmail API.
 
@@ -105,7 +93,6 @@ def send_message(service, sender, to, subject, html_body):
         dict: The response from the Gmail API, containing details of the sent message.
         None: If an error occurs during the message sending.
     """
->>>>>>> 2128406 (Added docstrings)
     
     try:
         message = create_message(sender, to, subject, html_body)
@@ -117,8 +104,6 @@ def send_message(service, sender, to, subject, html_body):
         return None
     
 def read_recipients_from_csv(file_path):
-<<<<<<< HEAD
-=======
     """
     Reads recipient information from a CSV file and returns a list of tuples containing names and email addresses.
     
@@ -143,7 +128,6 @@ def read_recipients_from_csv(file_path):
             [('John Doe', 'john.doe@example.com'), ('Jane Smith', 'jane.smith@example.com')]
     """
     
->>>>>>> 2128406 (Added docstrings)
     recipients = []
     with open(file_path, mode='r', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -152,8 +136,6 @@ def read_recipients_from_csv(file_path):
     return recipients
 
 def main():
-<<<<<<< HEAD
-=======
     """
     Main function to send emails to a list of recipients.
 
@@ -176,7 +158,6 @@ def main():
         Run this script from the command line to send bulk emails to recipients listed in a CSV file.
     """
     
->>>>>>> 2128406 (Added docstrings)
     # Load environment variables
     load_dotenv()
     gmail_address = os.getenv("GMAIL_ADDRESS")
@@ -186,16 +167,6 @@ def main():
     service = build('gmail', 'v1', credentials=creds)
 
     # Read HTML content from file
-<<<<<<< HEAD
-    with open('test.html', 'r') as file:
-        html_content = file.read()
-
-    # Define email content
-    subject = 'Your Newsletter Subject'
-
-    # Read recipients from CSV
-    recipients = read_recipients_from_csv('subscribers.csv')
-=======
     with open('your-file-here.html', 'r') as file:
         html_content = file.read()
 
@@ -204,7 +175,6 @@ def main():
 
     # Read recipients from CSV
     recipients = read_recipients_from_csv('list-of-your-subscribers.csv')
->>>>>>> 2128406 (Added docstrings)
     
     for name, email in recipients:
         print(f'Sending email to {name} <{email}>...')
